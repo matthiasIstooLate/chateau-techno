@@ -105,7 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Set the date we're counting down to
         // If the current date is past May 1st 2025, this will just show zeros.
         // Assuming the event is May 1st, 2025 at 18:00
-        const countDownDate = new Date("Sep 4, 2026 18:00:00").getTime();
+        // Using ISO 8601 format for better cross-browser compatibility (esp. iOS)
+        const countDownDate = new Date("2026-09-04T18:00:00").getTime();
 
         const updateCountdown = setInterval(function() {
             const now = new Date().getTime();

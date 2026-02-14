@@ -71,6 +71,8 @@ header {
 
 .countdown-number {
     font-size: 2.5rem;
+    font-family: var(--header-font); /* Ensure font is applied directly */
+    color: #bb86fc; /* Fallback for var() */
     color: var(--accent-color);
     font-weight: 700;
     text-shadow: 0 0 10px rgba(187, 134, 252, 0.5);
