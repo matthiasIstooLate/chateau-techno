@@ -285,6 +285,35 @@ h2 {
     color: #888;
 }
 
+/* Impressions Section */
+.impressions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.impression-item {
+    width: 100%;
+    aspect-ratio: 16/9; /* Or 4/3 */
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid var(--faq-border);
+    transition: transform 0.3s ease;
+}
+
+.impression-item:hover {
+    transform: scale(1.02);
+    border-color: var(--accent-color);
+}
+
+.impression-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 /* Footer */
 footer {
     text-align: center;
