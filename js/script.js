@@ -102,23 +102,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Countdown Timer
     const countdownContainer = document.getElementById('countdown');
     if (countdownContainer) {
-        // Set the date we're counting down to
-        // If the current date is past May 1st 2025, this will just show zeros.
-        // Assuming the event is May 1st, 2025 at 18:00
-        // Using ISO 8601 format for better cross-browser compatibility (esp. iOS)
-        const countDownDate = new Date("2026-09-04T18:00:00").getTime();
+        // Set the date we're counting down to: Sep 4, 2026 18:00:00 CEST (UTC+2)
+        // Using strict ISO format with timezone to prevent parsing errors on Safari
+        const countDownDate = new Date("2026-09-04T18:00:00+02:00").getTime();
 
         const updateCountdown = setInterval(function() {
             const now = new Date().getTime();
             const distance = countDownDate - now;
 
+            // Check if date is valid
+            if (isNaN(countDownDate)) {
+                clearInterval(updateCountdown);
+                return;
+            }
+
             if (distance < 0) {
                 // Time is up
                 clearInterval(updateCountdown);
-                document.getElementById("days").innerText = "00";
-                document.getElementById("hours").innerText = "00";
-                document.getElementById("minutes").innerText = "00";
-                document.getElementById("seconds").innerText = "00";
+                document.getElementById("days").textContent = "00";
+                document.getElementById("hours").textContent = "00";
+                document.getElementById("minutes").textContent = "00";
+                document.getElementById("seconds").textContent = "00";
                 return;
             }
 
@@ -127,10 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+            document.getElementById("days").textContent = days < 10 ? "0" + days : days;
+            document.getElementById("hours").textContent = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").textContent = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").textContent = seconds < 10 ? "0" + seconds : seconds;
         }, 1000);
     }
 });
