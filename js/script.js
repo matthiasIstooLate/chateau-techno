@@ -41,4 +41,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Populate Lineup
+    const lineupContainer = document.getElementById('lineup-container');
+    if (lineupContainer) {
+        fetch('lineup.json')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(artist => {
+                    const item = document.createElement('div');
+                    item.className = 'lineup-item';
+
+                    const content = `
+                        <a href="${artist.soundcloud || '#'}" target="_blank" class="lineup-link" ${!artist.soundcloud ? 'style="pointer-events: none;"' : ''}>
+                            <div class="lineup-img-wrapper">
+                                <img src="${artist.image}" alt="${artist.name}" class="lineup-img" onerror="this.src='images/logo.png'"> 
+                            </div>
+                            <h3 class="lineup-name">${artist.name}</h3>
+                        </a>
+                    `; // Fallback to logo if image fails
+
+                    item.innerHTML = content;
+                    lineupContainer.appendChild(item);
+                });
+            })
+            .catch(error => console.error('Error loading lineup:', error));
+    }
 });
