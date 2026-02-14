@@ -362,4 +362,34 @@ footer {
     h2 {
         font-size: 2rem;
     }
+
+    /* Fix Countdown for mobile */
+    #countdown {
+        gap: 10px;
+        margin: 10px 0 30px;
+    }
+
+    .countdown-number {
+        font-size: 1.5rem;
+    }
+
+    .countdown-label {
+        font-size: 0.6rem;
+    }
+
+    /* Fix Nav for mobile */
+    nav {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    nav ul {
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap; /* Allow wrapping securely if needed on very small screens */
+    }
+
+    nav a {
+        font-size: 0.9rem;
+    }
 }
