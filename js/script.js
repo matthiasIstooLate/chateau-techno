@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const content = `
                     <a href="${artist.soundcloud || '#'}" target="_blank" class="lineup-link" ${!artist.soundcloud ? 'style="pointer-events: none;"' : ''}>
                         <div class="lineup-img-wrapper">
-                            <img src="${artist.image}" alt="${artist.name}" class="lineup-img" onerror="this.src='images/logo.png'"> 
+                            <img src="${artist.image}" alt="${artist.name}" class="lineup-img" onerror="this.src='logo/chateautechno_logo_02.png'"> 
                         </div>
                         <h3 class="lineup-name">${artist.name}</h3>
                     </a>
