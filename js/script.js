@@ -44,27 +44,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Populate Lineup
     const lineupContainer = document.getElementById('lineup-container');
+
+    // embedded data for robustness
+    const lineupData = [
+      {
+        "name": "Ryningsnäs",
+        "image": "images/lineup/Ryningsnaes.png",
+        "soundcloud": "https://soundcloud.com/ryningsnaes/"
+      },
+      {
+        "name": "Joey Hostile 3000",
+        "image": "images/lineup/Joey Hostile 3000.png",
+        "soundcloud": "https://soundcloud.com/johannes-franziskus-diemberger"
+      },
+      {
+        "name": "Charly",
+        "image": "images/lineup/Charly.png",
+        "soundcloud": "https://soundcloud.com/charlybrezel"
+      }
+    ];
+
     if (lineupContainer) {
+        // Function to render lineup items
+        const renderLineup = (data) => {
+            lineupContainer.innerHTML = ''; // Clear existing content
+            data.forEach(artist => {
+                const item = document.createElement('div');
+                item.className = 'lineup-item';
+
+                const content = `
+                    <a href="${artist.soundcloud || '#'}" target="_blank" class="lineup-link" ${!artist.soundcloud ? 'style="pointer-events: none;"' : ''}>
+                        <div class="lineup-img-wrapper">
+                            <img src="${artist.image}" alt="${artist.name}" class="lineup-img" onerror="this.src='images/logo.png'"> 
+                        </div>
+                        <h3 class="lineup-name">${artist.name}</h3>
+                    </a>
+                `;
+
+                item.innerHTML = content;
+                lineupContainer.appendChild(item);
+            });
+        };
+
+        // Try to fetch from lineup.json, fallback to embedded data if fetch fails (e.g. local file system)
         fetch('lineup.json')
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(artist => {
-                    const item = document.createElement('div');
-                    item.className = 'lineup-item';
-
-                    const content = `
-                        <a href="${artist.soundcloud || '#'}" target="_blank" class="lineup-link" ${!artist.soundcloud ? 'style="pointer-events: none;"' : ''}>
-                            <div class="lineup-img-wrapper">
-                                <img src="${artist.image}" alt="${artist.name}" class="lineup-img" onerror="this.src='images/logo.png'"> 
-                            </div>
-                            <h3 class="lineup-name">${artist.name}</h3>
-                        </a>
-                    `; // Fallback to logo if image fails
-
-                    item.innerHTML = content;
-                    lineupContainer.appendChild(item);
-                });
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
             })
-            .catch(error => console.error('Error loading lineup:', error));
+            .then(data => renderLineup(data))
+            .catch(error => {
+                console.log('Fetching lineup.json failed, using embedded data:', error);
+                renderLineup(lineupData);
+            });
     }
 });
