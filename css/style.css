@@ -123,6 +123,18 @@ body.light-mode .logo {
        but 40vh should be safe for both. */
 }
 
+/* Specific adjustments for Light Mode Desktop to allow larger flyer */
+@media (min-width: 769px) {
+    body.light-mode header {
+        justify-content: flex-start;
+        padding-top: 5vh;
+    }
+
+    body.light-mode .logo {
+        max-height: 60vh; /* Allow it to be taller */
+    }
+}
+
 #logo-text {
     font-size: 3rem;
     font-family: var(--header-font);
