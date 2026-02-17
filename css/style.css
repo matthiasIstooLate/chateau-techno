@@ -159,7 +159,7 @@ body.light-mode .logo {
 }
 
 body.light-mode .event-info {
-    text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+    text-shadow: none;
 }
 
 /* Countdown Timer */
@@ -260,6 +260,8 @@ nav a:hover {
     color: var(--accent-color);
     text-shadow: 0 0 8px var(--accent-color);
 }
+
+/* ...existing code... */
 
 /* Main Content */
 main {
