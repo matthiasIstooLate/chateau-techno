@@ -144,6 +144,24 @@ body.light-mode .logo {
     position: relative;
 }
 
+/* Event Info */
+.event-info {
+    text-align: center;
+    font-family: var(--header-font);
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(187, 134, 252, 0.5);
+    line-height: 1.5;
+}
+
+body.light-mode .event-info {
+    text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+}
+
 /* Countdown Timer */
 #countdown {
     margin: 20px 0 40px;
@@ -464,6 +482,12 @@ footer {
 
     h2 {
         font-size: 2rem;
+    }
+
+    /* Adjust event info for mobile */
+    .event-info {
+        font-size: 1rem;
+        margin-bottom: 10px;
     }
 
     /* Fix Countdown for mobile */
