@@ -1,5 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeLabel = document.getElementById('theme-label');
+    const body = document.body;
+    const logo = document.querySelector('.logo');
+    const darkLogo = 'logo/chateautechno_logo_02.png';
+    const lightLogo = 'logo/chateau_techno_flyer.jpg'; // Using the flyer as requested for light mode
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+
+            if (body.classList.contains('light-mode')) {
+                logo.src = lightLogo;
+                if (themeLabel) themeLabel.textContent = "Dark Mode";
+            } else {
+                logo.src = darkLogo;
+                if (themeLabel) themeLabel.textContent = "Light Mode";
+            }
+        });
+    }
+
     // FAQ Accordion
     const faqQuestions = document.querySelectorAll('.faq-question');
 

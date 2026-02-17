@@ -7,6 +7,23 @@
     --body-font: 'Roboto Mono', monospace;
     --faq-bg: #1e1e1e;
     --faq-border: #333;
+    --faq-hover-bg: #2a2a2a;
+    --faq-answer-bg: #121212;
+    --header-bg: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+    --card-shadow: 0 0 15px rgba(187, 134, 252, 0.3);
+}
+
+body.light-mode {
+    --bg-color: #f0f0f5; /* Light grey-ish purple */
+    --text-color: #121212;
+    --accent-color: #ff007f; /* Vibrant Pink/Magenta */
+    --accent-color-hover: #cc0066;
+    --faq-bg: #ffffff;
+    --faq-border: #ccc;
+    --faq-hover-bg: #f0f0f5;
+    --faq-answer-bg: #fafafa;
+    --header-bg: radial-gradient(circle at center, #ffffff 0%, #e6e6fa 100%);
+    --card-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
 }
 
 * {
@@ -21,6 +38,56 @@ body {
     font-family: var(--body-font);
     line-height: 1.6;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme Toggle Button */
+.theme-switch-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+}
+
+#theme-toggle {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 60px;
+    height: 60px; /* Fixed size for consistency */
+    display: flex; /* Centering */
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+#theme-toggle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; /* Making it round */
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 10px rgba(187, 134, 252, 0.3);
+}
+
+#theme-label {
+    margin-top: 8px;
+    font-size: 0.7rem;
+    font-family: var(--header-font);
+    color: var(--text-color); /* Uses var so it swaps in light mode */
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0 0 2px rgba(0,0,0,0.5);
+    pointer-events: none; /* Iterate clicks through to header background if missed */
 }
 
 /* Header & Nav */
@@ -33,7 +100,8 @@ header {
     text-align: center;
     padding: 20px;
     position: relative;
-    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+    background: var(--header-bg);
+    transition: background 0.5s ease;
 }
 
 .logo-container {
@@ -44,6 +112,15 @@ header {
     max-width: 80%;
     height: auto;
     filter: drop-shadow(0 0 10px rgba(187, 134, 252, 0.5));
+    /* Prevent logo from being too tall on any screen */
+    max-height: 40vh;
+    width: auto; /* Ensure aspect ratio is maintained with max-height */
+}
+
+body.light-mode .logo {
+    filter: drop-shadow(0 0 15px rgba(255, 0, 127, 0.4));
+    /* The flyer might be portrait, so we restrict height further if needed,
+       but 40vh should be safe for both. */
 }
 
 #logo-text {
@@ -76,6 +153,10 @@ header {
     color: var(--accent-color);
     font-weight: 700;
     text-shadow: 0 0 10px rgba(187, 134, 252, 0.5);
+}
+
+body.light-mode .countdown-number {
+    text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
 }
 
 .countdown-label {
@@ -202,7 +283,7 @@ h2 {
 }
 
 .faq-question:hover {
-    background-color: #2a2a2a;
+    background-color: var(--faq-hover-bg);
 }
 
 .faq-question::after {
@@ -220,7 +301,7 @@ h2 {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-out;
-    background-color: #121212;
+    background-color: var(--faq-answer-bg);
 }
 
 .faq-answer p {
@@ -262,15 +343,14 @@ h2 {
     overflow: hidden;
     margin-bottom: 20px;
     border: 3px solid var(--accent-color);
-    box-shadow: 0 0 15px rgba(187, 134, 252, 0.3);
+    box-shadow: var(--card-shadow);
     transition: all 0.3s ease;
     position: relative;
     background-color: #222;
 }
 
-.lineup-item:hover .lineup-img-wrapper {
-    box-shadow: 0 0 25px rgba(187, 134, 252, 0.6);
-    border-color: #d1a8fc;
+body.light-mode .lineup-img-wrapper {
+    background-color: #eee;
 }
 
 .lineup-img {
