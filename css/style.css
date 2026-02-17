@@ -43,8 +43,8 @@ body {
 
 /* Theme Toggle Button */
 .theme-switch-container {
-    position: absolute;
-    top: 20px;
+    position: fixed;
+    bottom: 20px;
     right: 20px;
     display: flex;
     flex-direction: column;
@@ -436,13 +436,6 @@ footer {
 /* Responsive */
 @media (max-width: 768px) {
     /* Adjust Theme Toggle for Mobile */
-    .theme-switch-container {
-        top: auto;        /* Unset top */
-        bottom: 20px;     /* Move to bottom */
-        right: 20px;      /* Keep right alignment */
-        position: fixed;  /* Fix position so it floats on top of content and is always accessible */
-    }
-
     #theme-toggle {
         width: 40px;
         height: 40px;
