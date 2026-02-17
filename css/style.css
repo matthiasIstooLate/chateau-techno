@@ -435,6 +435,22 @@ footer {
 
 /* Responsive */
 @media (max-width: 768px) {
+    /* Adjust Theme Toggle for Mobile */
+    .theme-switch-container {
+        top: 10px;
+        right: 10px;
+    }
+
+    #theme-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    #theme-label {
+        font-size: 0.5rem;
+        margin-top: 4px;
+    }
+
     #logo-text {
         font-size: 2rem;
     }
@@ -473,7 +489,7 @@ footer {
         min-height: 100vh;
         padding-bottom: 40px;
         justify-content: flex-start; /* Prevent cut-off at top if content is tall */
-        padding-top: 50px;
+        padding-top: 80px; /* Increased padding to give the theme button more room */
     }
 
     nav ul {
