@@ -8,6 +8,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const darkLogo = 'logo/chateautechno_logo_02.png';
     const lightLogo = 'logo/chateau_techno_flyer.jpg'; // Using the flyer as requested for light mode
 
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light-mode') {
+        body.classList.add('light-mode');
+        logo.src = lightLogo;
+        if (themeLabel) themeLabel.textContent = "Dark Mode";
+    }
+
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('light-mode');
@@ -15,9 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (body.classList.contains('light-mode')) {
                 logo.src = lightLogo;
                 if (themeLabel) themeLabel.textContent = "Dark Mode";
+                localStorage.setItem('theme', 'light-mode');
             } else {
                 logo.src = darkLogo;
                 if (themeLabel) themeLabel.textContent = "Light Mode";
+                localStorage.setItem('theme', 'dark-mode');
             }
         });
     }
