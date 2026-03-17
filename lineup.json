@@ -8,10 +8,11 @@
     "name": "Joey Hostile 3000",
     "image": "images/lineup/Joey Hostile 3000.png",
     "soundcloud": "https://soundcloud.com/johannes-franziskus-diemberger"
-  },
-  {
-    "name": "Charly",
-    "image": "images/lineup/Charly.png",
-    "soundcloud": "https://soundcloud.com/charlybrezel"
   }
+
+  // {
+  //   "name": "Charly",
+  //   "image": "images/lineup/Charly.png",
+  //   "soundcloud": "https://soundcloud.com/charlybrezel"
+  // }
 ]
